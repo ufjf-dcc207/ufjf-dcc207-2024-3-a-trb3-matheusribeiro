@@ -1,6 +1,6 @@
 import './App.css'
 import Adiciona from './components/Adiciona'
-import Livro from './components/Livro'
+import ListaLivros from './components/ListaLivros'
 
 function App() {
 
@@ -8,7 +8,7 @@ function App() {
     <>
       <div>
         <Adiciona/>
-        <Livro/>
+        <ListaLivros/>
       </div>
     </>
   )

@@ -1,0 +1,20 @@
+.containerListas{
+    display: flex;
+    justify-content: space-between;
+}
+
+.lista{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+h1{
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: -15px;
+}
+
+li{
+    list-style: none;
+}
