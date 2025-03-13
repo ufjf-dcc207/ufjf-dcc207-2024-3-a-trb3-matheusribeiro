@@ -1,0 +1,16 @@
+.livro{
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 80%;
+    box-shadow: 0px 0px 10px -2px white;
+}
+
+.textoContainer{
+    flex-direction: column;
+    padding: 2px 2px 2px 20px;
+}
+
+.texto{
+    text-align: start;
+    font-size: 16px;
+}

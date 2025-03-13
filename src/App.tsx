@@ -1,5 +1,6 @@
 import './App.css'
 import Adiciona from './components/Adiciona'
+import Livro from './components/Livro'
 
 function App() {
 
@@ -7,6 +8,7 @@ function App() {
     <>
       <div>
         <Adiciona/>
+        <Livro/>
       </div>
     </>
   )
