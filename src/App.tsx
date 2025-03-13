@@ -1,11 +1,12 @@
 import './App.css'
+import Adiciona from './components/Adiciona'
 
 function App() {
 
   return (
     <>
       <div>
-        Olá
+        <Adiciona/>
       </div>
     </>
   )
