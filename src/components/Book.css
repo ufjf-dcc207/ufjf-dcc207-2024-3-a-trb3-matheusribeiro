@@ -1,16 +1,16 @@
-.livro{
-    border: 2px solid black;
+.book{
+    border: 1px solid black;
     border-radius: 10px;
     width: 100%;
     box-shadow: 0px 0px 10px -2px black;
     margin-top: 50px;
 }
 
-.textoContainer{
+.textContainer{
     padding: 2px 20px 20px 20px;
 }
 
-.texto{
+.text{
     text-align: start;
     font-size: 16px;
 }

@@ -1,9 +1,9 @@
-.containerListas{
+.containerLists{
     display: flex;
     justify-content: space-between;
 }
 
-.lista{
+.list{
     display: flex;
     flex-direction: column;
     text-align: center;

@@ -1,14 +1,31 @@
+import { useReducer } from 'react';
 import './App.css'
-import Adiciona from './components/Adiciona'
-import ListaLivros from './components/ListaLivros'
+import Add from './components/Add'
+import BookList from './components/BookList'
+
+const initialState ={
+  books: [],
+}
+
+function reducer(state, action){
+  switch (action.type){
+    case 'ADD_BOOK':
+      return{
+        ...state,
+        books: [...state.books, action.payload],
+      };
+  }
+}
 
 function App() {
 
+  const [state, dispatch] = useReducer(reducer, initialState);
+  
   return (
     <>
       <div>
-        <Adiciona/>
-        <ListaLivros/>
+        <Add dispatch={dispatch}/>
+        <BookList books={state.books}/>
       </div>
     </>
   )
