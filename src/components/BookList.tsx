@@ -2,53 +2,32 @@ import "./BookList.css";
 import Book from "./Book";
 import { BookType } from "../types/Book";
 
-interface BookListProps{
+interface BookListProps {
   books: BookType[];
 }
 
-export default function BookList({ books } : BookListProps) {
+export default function BookList({ books }: BookListProps) {
+  const categorias = {
+    "quero-ler": "Quero Ler",
+    "lendo": "Lendo",
+    "concluido": "Concluído",
+    "abandonado": "Abandonado",
+  };
+
   return (
     <div className="containerLists">
-      <div className="list">
-        <h1>QUERO LER</h1>
-        {books
-          .filter((book) => book.status === "quero-ler")
-          .map((book) => (
-            <li key={book.id}>
-              <Book book={book} />
-            </li>
-          ))}
-      </div>
-      <div className="list">
-        <h1>LENDO</h1>
-        {books
-          .filter((book) => book.status === "lendo")
-          .map((book) => (
-            <li key={book.id}>
-              <Book book={book} />
-            </li>
-          ))}
-      </div>
-      <div className="list">
-        <h1>CONCLUÍDO</h1>
-        {books
-          .filter((book) => book.status === "concluido")
-          .map((book) => (
-            <li key={book.id}>
-              <Book book={book} />
-            </li>
-          ))}
-      </div>
-      <div className="list">
-        <h1>ABANDONADO</h1>
-        {books
-          .filter((book) => book.status === "abandonado")
-          .map((book) => (
-            <li key={book.id}>
-              <Book book={book} />
-            </li>
-          ))}
-      </div>
+      {(Object.keys(categorias) as Array<keyof typeof categorias>).map((status) => (
+        <div className="list">
+          <h1>{categorias[status]}</h1>
+            {books
+              .filter((livro) => livro.status === status)
+              .map((book) => (
+                <li key={book.id}>
+                  <Book book={book} />
+                </li>
+              ))}
+        </div>
+      ))}
     </div>
   );
 }
