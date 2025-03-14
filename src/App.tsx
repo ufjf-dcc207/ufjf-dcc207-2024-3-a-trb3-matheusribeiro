@@ -2,12 +2,20 @@ import { useReducer } from 'react';
 import './App.css'
 import Add from './components/Add'
 import BookList from './components/BookList'
+import { BookType } from "./types/Book";
 
-const initialState ={
+interface AppState{
+  books: BookType[],
+}
+
+type AppAction = {type: 'ADD_BOOK'; payload: BookType};
+
+const initialState: AppState ={
   books: [],
 }
 
-function reducer(state, action){
+
+function reducer(state: AppState, action: AppAction) : AppState {
   switch (action.type){
     case 'ADD_BOOK':
       return{

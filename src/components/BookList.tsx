@@ -1,7 +1,12 @@
 import "./BookList.css";
 import Book from "./Book";
+import { BookType } from "../types/Book";
 
-export default function BookList({ books }) {
+interface BookListProps{
+  books: BookType[];
+}
+
+export default function BookList({ books } : BookListProps) {
   return (
     <div className="containerLists">
       <div className="list">

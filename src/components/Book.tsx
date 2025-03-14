@@ -1,6 +1,11 @@
+import { BookType } from "../types/Book";
 import "./Book.css";
 
-export default function Book({book}) {
+interface BookProps{
+  book: BookType;
+}
+
+export default function Book({book} : BookProps) {
   return (
     <div className="book">
       <div className="textContainer">
