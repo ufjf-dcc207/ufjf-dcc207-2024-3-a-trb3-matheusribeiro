@@ -18,7 +18,7 @@ export default function BookList({ books , onUpdateBook}: BookListProps) {
   return (
     <div className="containerLists">
       {(Object.keys(categorias) as Array<keyof typeof categorias>).map((status) => (
-        <div className="list">
+        <div className="list" key={status}>
           <h1>{categorias[status]}</h1>
             {books
               .filter((livro) => livro.status === status)

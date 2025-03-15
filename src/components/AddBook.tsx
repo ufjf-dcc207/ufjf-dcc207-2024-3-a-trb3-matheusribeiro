@@ -1,12 +1,12 @@
 import { FormEvent, useRef } from "react";
-import "./Add.css";
+import "./AddBook.css";
 import { BookType } from "../types/Book";
 
 interface AddProps {
   onAddBook: (book: BookType) => void;
 }
 
-export default function Add({ onAddBook }: AddProps) {
+export default function AddBook({ onAddBook }: AddProps) {
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = (e: FormEvent) => {
@@ -51,12 +51,7 @@ export default function Add({ onAddBook }: AddProps) {
           </div>
           <div>
             <label>Progresso de Leitura:</label>
-            <input
-              id="progress"
-              type="number"
-              min={0}
-              required
-            />
+            <input id="progress" type="number" min={0} required />
           </div>
           <div>
             <label htmlFor="status">Status de Leitura:</label>
