@@ -4,5 +4,5 @@ export interface BookType{
     author: string,
     pages: number,
     progress: number,
-    status: "quero-ler" | "lendo" | "concluido" | "abandonado";
+    status: string;
 }

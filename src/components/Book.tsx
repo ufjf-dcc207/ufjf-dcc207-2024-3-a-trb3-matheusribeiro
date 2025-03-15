@@ -1,22 +1,51 @@
+import { useRef } from "react";
 import { BookType } from "../types/Book";
 import "./Book.css";
 
-interface BookProps{
+interface BookProps {
   book: BookType;
+  dispatch: (action: { type: "UPDATE_BOOK"; payload: BookType }) => void;
 }
 
-export default function Book({book} : BookProps) {
+export default function Book({ book, dispatch }: BookProps) {
+  const progressRef = useRef<HTMLInputElement>(null);
+  const statusRef = useRef<HTMLSelectElement>(null);
+
+  const handleUpdate = () => {
+    const newProgress = Number(progressRef.current?.value);
+    const newStatus = statusRef.current?.value as string;
+
+    dispatch({
+      type: "UPDATE_BOOK",
+      payload: {
+        ...book,
+        progress: Math.min(newProgress, book.pages),
+        status: newStatus,
+      },
+    });
+  };
+
   return (
     <div className="book">
       <div className="textContainer">
         <p className="text">Nome: {book.name}</p>
         <p className="text">Autor: {book.author}</p>
         <p className="text">Número de Páginas: {book.pages}</p>
-        <p className="text">Progresso de Leitura: {book.progress}/{book.pages}</p>
-        <p>Página que parou: </p>
-        <input type="number" min={0} />
+        <p className="text">
+          Progresso de Leitura: {book.progress}/{book.pages}
+        </p>
         <p className="text">Status: {book.status}</p>
-
+        <div className="edit">
+          <p>Página que parou: </p>
+          <input type="number" id="progress" min={0} max={book.pages} ref={progressRef} defaultValue={book.progress} onBlur={handleUpdate}/>
+          <label htmlFor="status">Status de Leitura:</label>
+          <select id="status" onBlur={handleUpdate} ref={statusRef} defaultValue={book.status} required>
+            <option value="quero-ler">Quero Ler</option>
+            <option value="lendo">Lendo</option>
+            <option value="concluido">Concluído</option>
+            <option value="abandonado">Abandonado</option>
+          </select>
+        </div>
         <button type="submit">Editar</button>
       </div>
     </div>
