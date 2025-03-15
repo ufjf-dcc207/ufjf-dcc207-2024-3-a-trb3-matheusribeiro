@@ -4,10 +4,10 @@ import "./Book.css";
 
 interface BookProps {
   book: BookType;
-  dispatch: (action: { type: "UPDATE_BOOK"; payload: BookType }) => void;
+  onUpdateBook: (book: BookType) => void;
 }
 
-export default function Book({ book, dispatch }: BookProps) {
+export default function Book({ book, onUpdateBook }: BookProps) {
   const progressRef = useRef<HTMLInputElement>(null);
   const statusRef = useRef<HTMLSelectElement>(null);
 
@@ -15,13 +15,10 @@ export default function Book({ book, dispatch }: BookProps) {
     const newProgress = Number(progressRef.current?.value);
     const newStatus = statusRef.current?.value as string;
 
-    dispatch({
-      type: "UPDATE_BOOK",
-      payload: {
-        ...book,
-        progress: Math.min(newProgress, book.pages),
-        status: newStatus,
-      },
+    onUpdateBook({
+      ...book,
+      progress: Math.min(newProgress, book.pages),
+      status: newStatus,
     });
   };
 
@@ -37,16 +34,15 @@ export default function Book({ book, dispatch }: BookProps) {
         <p className="text">Status: {book.status}</p>
         <div className="edit">
           <p>Página que parou: </p>
-          <input type="number" id="progress" min={0} max={book.pages} ref={progressRef} defaultValue={book.progress} onBlur={handleUpdate}/>
+          <input type="number" id="progress" min={0} max={book.pages} ref={progressRef} defaultValue={book.progress} onChange={handleUpdate}/>
           <label htmlFor="status">Status de Leitura:</label>
-          <select id="status" onBlur={handleUpdate} ref={statusRef} defaultValue={book.status} required>
+          <select id="status" onChange={handleUpdate} ref={statusRef} defaultValue={book.status} required>
             <option value="quero-ler">Quero Ler</option>
             <option value="lendo">Lendo</option>
             <option value="concluido">Concluído</option>
             <option value="abandonado">Abandonado</option>
           </select>
         </div>
-        <button type="submit">Editar</button>
       </div>
     </div>
   );

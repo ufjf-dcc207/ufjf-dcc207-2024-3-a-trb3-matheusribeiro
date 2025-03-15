@@ -3,10 +3,10 @@ import "./Add.css";
 import { BookType } from "../types/Book";
 
 interface AddProps {
-  dispatch: (action: { type: "ADD_BOOK"; payload: BookType }) => void;
+  onAddBook: (book: BookType) => void;
 }
 
-export default function Add({ dispatch }: AddProps) {
+export default function Add({ onAddBook }: AddProps) {
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = (e: FormEvent) => {
@@ -29,8 +29,7 @@ export default function Add({ dispatch }: AddProps) {
       status,
     };
 
-    dispatch({ type: "ADD_BOOK", payload: newBook });
-
+    onAddBook(newBook);
     formRef.current.reset();
   };
 

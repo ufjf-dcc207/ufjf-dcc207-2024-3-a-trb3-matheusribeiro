@@ -4,10 +4,10 @@ import { BookType } from "../types/Book";
 
 interface BookListProps {
   books: BookType[];
-  dispatch: (action: { type: "UPDATE_BOOK"; payload: BookType }) => void;
+  onUpdateBook: (book: BookType) => void;
 }
 
-export default function BookList({ books , dispatch}: BookListProps) {
+export default function BookList({ books , onUpdateBook}: BookListProps) {
   const categorias = {
     "quero-ler": "Quero Ler",
     "lendo": "Lendo",
@@ -24,7 +24,7 @@ export default function BookList({ books , dispatch}: BookListProps) {
               .filter((livro) => livro.status === status)
               .map((book) => (
                 <li key={book.id}>
-                  <Book book={book} dispatch={dispatch}/>
+                  <Book book={book} onUpdateBook={onUpdateBook}/>
                 </li>
               ))}
         </div>
