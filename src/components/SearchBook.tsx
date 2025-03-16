@@ -2,23 +2,28 @@ import { useEffect, useState } from "react";
 import "./SeachBook.css";
 import { GoogleBook, SearchBooks } from "../services/api";
 
-export default function SearchBook() {
+interface SeachBookProps {
+  onBookSelect: (book: GoogleBook) => void;
+}
+
+export default function SearchBook({ onBookSelect }: SeachBookProps) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<GoogleBook[]>([]);
 
   useEffect(() => {
-    if(query.length > 3){
-    const fetchBooks = async () => {
-      try {
-        const data = await SearchBooks(query);
-        setResults(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    const debounceTimer = setTimeout(fetchBooks, 500);
-    return () => clearTimeout(debounceTimer);
-}}, [query]);
+    if (query.length > 3) {
+      const fetchBooks = async () => {
+        try {
+          const data = await SearchBooks(query);
+          setResults(data);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      const debounceTimer = setTimeout(fetchBooks, 500);
+      return () => clearTimeout(debounceTimer);
+    }
+  }, [query]);
 
   return (
     <div>
@@ -32,10 +37,17 @@ export default function SearchBook() {
 
       {results.length > 0 && (
         <div>
-            <ul>
-          {results.map((book) => (
-              <li key={book.id}>{book.volumeInfo.title} - {book.volumeInfo.authors?.[0]}</li>
-          ))}
+          <ul>
+            {results.map((book) => (
+              <li
+                key={book.id}
+                onClick={() => {
+                  onBookSelect(book);
+                }}
+              >
+                {book.volumeInfo.title} - {book.volumeInfo.authors?.[0]}
+              </li>
+            ))}
           </ul>
         </div>
       )}

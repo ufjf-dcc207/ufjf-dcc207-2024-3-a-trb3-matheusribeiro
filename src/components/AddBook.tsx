@@ -2,6 +2,7 @@ import { FormEvent, useRef } from "react";
 import "./AddBook.css";
 import { BookType } from "../types/Book";
 import SearchBook from "./SearchBook";
+import { GoogleBook } from "../services/api";
 
 interface AddProps {
   onAddBook: (book: BookType) => void;
@@ -9,6 +10,15 @@ interface AddProps {
 
 export default function AddBook({ onAddBook }: AddProps) {
   const formRef = useRef<HTMLFormElement>(null);
+
+  const handleSelect = (book : GoogleBook) =>{
+
+    if (!formRef.current) return;
+
+    formRef.current.nome.value = book.volumeInfo.title;
+    formRef.current.author.value = book.volumeInfo.authors?.[0];
+    formRef.current.pages.value = book.volumeInfo.pageCount;
+  }
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -38,7 +48,7 @@ export default function AddBook({ onAddBook }: AddProps) {
     <div className="containerForm">
       <form ref={formRef} onSubmit={handleSubmit}>
         <div className="form">
-          <SearchBook />
+          <SearchBook onBookSelect={handleSelect}/>
           <div>
             <label htmlFor="nome">Título:</label>
             <input id="nome" type="text" required />
@@ -49,7 +59,7 @@ export default function AddBook({ onAddBook }: AddProps) {
           </div>
           <div>
             <label>Número de Páginas:</label>
-            <input id="pages" type="number" min={0} required />
+            <input id="pages" type="number" min={0}  required />
           </div>
           <div>
             <label>Progresso de Leitura:</label>
