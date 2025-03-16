@@ -1,6 +1,7 @@
 import { FormEvent, useRef } from "react";
 import "./AddBook.css";
 import { BookType } from "../types/Book";
+import SearchBook from "./SearchBook";
 
 interface AddProps {
   onAddBook: (book: BookType) => void;
@@ -37,6 +38,7 @@ export default function AddBook({ onAddBook }: AddProps) {
     <div className="containerForm">
       <form ref={formRef} onSubmit={handleSubmit}>
         <div className="form">
+          <SearchBook />
           <div>
             <label htmlFor="nome">Título:</label>
             <input id="nome" type="text" required />
