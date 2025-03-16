@@ -1,6 +1,6 @@
 export interface BookType{
     id: number,
-    name: string,
+    title: string,
     author: string,
     pages: number,
     progress: number,

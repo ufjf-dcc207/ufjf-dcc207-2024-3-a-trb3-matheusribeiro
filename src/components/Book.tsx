@@ -25,13 +25,12 @@ export default function Book({ book, onUpdateBook }: BookProps) {
   return (
     <div className="book">
       <div className="textContainer">
-        <p className="text">Nome: {book.name}</p>
+        <p className="text">Título: {book.title}</p>
         <p className="text">Autor: {book.author}</p>
         <p className="text">Número de Páginas: {book.pages}</p>
         <p className="text">
           Progresso de Leitura: {book.progress}/{book.pages}
         </p>
-        <p className="text">Status: {book.status}</p>
         <div className="edit">
           <p>Página que parou: </p>
           <input type="number" id="progress" min={0} max={book.pages} ref={progressRef} defaultValue={book.progress} onChange={handleUpdate}/>

@@ -14,7 +14,7 @@ export default function AddBook({ onAddBook }: AddProps) {
 
     if (!formRef.current) return;
 
-    const name = formRef.current.nome.value;
+    const title = formRef.current.nome.value;
     const author = formRef.current.author.value;
     const pages = formRef.current.pages.value;
     const progress = formRef.current.progress.value;
@@ -22,7 +22,7 @@ export default function AddBook({ onAddBook }: AddProps) {
 
     const newBook: BookType = {
       id: Date.now(),
-      name,
+      title,
       author,
       pages,
       progress,
@@ -38,7 +38,7 @@ export default function AddBook({ onAddBook }: AddProps) {
       <form ref={formRef} onSubmit={handleSubmit}>
         <div className="form">
           <div>
-            <label htmlFor="nome">Nome:</label>
+            <label htmlFor="nome">Título:</label>
             <input id="nome" type="text" required />
           </div>
           <div>
