@@ -1,0 +1,18 @@
+.list-search{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.search{
+    height: 30px;
+    border-radius: 8px;
+    padding: 2px;
+    font-weight:500;
+}
+
+.search:hover{
+    background-color: cadetblue;
+    color: black;
+    transition: all 0.3s;
+}

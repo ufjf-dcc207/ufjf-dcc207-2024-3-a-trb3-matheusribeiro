@@ -19,11 +19,11 @@ export default function BookList({ books , onUpdateBook}: BookListProps) {
     <div className="containerLists">
       {(Object.keys(categorias) as Array<keyof typeof categorias>).map((status) => (
         <div className="list" key={status}>
-          <h1>{categorias[status]}</h1>
+          <h1 className="textStatus">{categorias[status]}</h1>
             {books
               .filter((livro) => livro.status === status)
               .map((book) => (
-                <li key={book.id}>
+                <li key={book.id} className="card">
                   <Book book={book} onUpdateBook={onUpdateBook}/>
                 </li>
               ))}

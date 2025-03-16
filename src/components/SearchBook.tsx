@@ -36,11 +36,12 @@ export default function SearchBook({ onBookSelect }: SeachBookProps) {
       />
 
       {results.length > 0 && (
-        <div>
-          <ul>
+        <div className="list-search">
+          <ul className="list-search">
             {results.map((book) => (
               <li
                 key={book.id}
+                className="search"
                 onClick={() => {
                   onBookSelect(book);
                 }}

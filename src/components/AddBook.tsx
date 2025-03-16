@@ -28,7 +28,7 @@ export default function AddBook({ onAddBook }: AddProps) {
     const title = formRef.current.nome.value;
     const author = formRef.current.author.value;
     const pages = formRef.current.pages.value;
-    const progress = formRef.current.progress.value;
+    const progress = Math.min(formRef.current.progress.value, formRef.current.pages.value);
     const status = formRef.current.status.value;
 
     const newBook: BookType = {

@@ -1,6 +1,7 @@
 .containerLists{
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 2fr;
+    gap: 40px;
 }
 
 .list{
@@ -9,12 +10,13 @@
     text-align: center;
 }
 
-h1{
+.textStatus{
     font-size: 20px;
     text-align: center;
     margin-bottom: -15px;
 }
 
-li{
+.card{
     list-style: none;
+    text-align: start;
 }
