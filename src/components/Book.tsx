@@ -8,16 +8,13 @@ interface BookProps {
 }
 
 export default function Book({ book, onUpdateBook }: BookProps) {
-  const progressRef = useRef<HTMLInputElement>(null);
   const statusRef = useRef<HTMLSelectElement>(null);
 
   const handleUpdate = () => {
-    const newProgress = Number(progressRef.current?.value);
-    const newStatus = statusRef.current?.value as string;
+    const newStatus = statusRef.current?.value as BookType["status"];
 
     onUpdateBook({
       ...book,
-      progress: Math.min(newProgress, book.pages),
       status: newStatus,
     });
   };
@@ -28,14 +25,15 @@ export default function Book({ book, onUpdateBook }: BookProps) {
         <p className="text">Título: {book.title}</p>
         <p className="text">Autor: {book.author}</p>
         <p className="text">Número de Páginas: {book.pages}</p>
-        <p className="text">
-          Progresso de Leitura: {book.progress}/{book.pages}
-        </p>
         <div className="edit">
-          <p>Página que parou: </p>
-          <input type="number" id="progress" min={0} max={book.pages} ref={progressRef} defaultValue={book.progress} onChange={handleUpdate}/>
           <label htmlFor="status">Status de Leitura:</label>
-          <select id="status" onChange={handleUpdate} ref={statusRef} defaultValue={book.status} required>
+          <select
+            id="status"
+            onChange={handleUpdate}
+            ref={statusRef}
+            defaultValue={book.status}
+            required
+          >
             <option value="quero-ler">Quero Ler</option>
             <option value="lendo">Lendo</option>
             <option value="concluido">Concluído</option>

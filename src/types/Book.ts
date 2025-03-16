@@ -3,6 +3,5 @@ export interface BookType{
     title: string,
     author: string,
     pages: number,
-    progress: number,
     status: string;
 }
