@@ -8,7 +8,7 @@ interface BookListProps {
 }
 
 export default function BookList({ books , onUpdateBook}: BookListProps) {
-  const categorias = {
+  const categories = {
     "quero-ler": "Quero Ler",
     "lendo": "Lendo",
     "concluido": "Concluído",
@@ -17,9 +17,9 @@ export default function BookList({ books , onUpdateBook}: BookListProps) {
 
   return (
     <div className="containerLists">
-      {(Object.keys(categorias) as Array<keyof typeof categorias>).map((status) => (
+      {(Object.keys(categories) as Array<keyof typeof categories>).map((status) => (
         <div className="list" key={status}>
-          <h1 className="textStatus">{categorias[status]}</h1>
+          <h1 className="textStatus">{categories[status]}</h1>
             {books
               .filter((book) => book.status === status)
               .map((book) => (
