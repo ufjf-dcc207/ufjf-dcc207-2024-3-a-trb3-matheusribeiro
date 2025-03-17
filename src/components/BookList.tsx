@@ -21,7 +21,7 @@ export default function BookList({ books , onUpdateBook}: BookListProps) {
         <div className="list" key={status}>
           <h1 className="textStatus">{categorias[status]}</h1>
             {books
-              .filter((livro) => livro.status === status)
+              .filter((book) => book.status === status)
               .map((book) => (
                 <li key={book.id} className="card">
                   <Book book={book} onUpdateBook={onUpdateBook}/>
