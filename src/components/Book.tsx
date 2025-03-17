@@ -11,7 +11,7 @@ export default function Book({ book, onUpdateBook }: BookProps) {
   const statusRef = useRef<HTMLSelectElement>(null);
 
   const handleUpdate = () => {
-    const newStatus = statusRef.current?.value as BookType["status"];
+    const newStatus = statusRef.current?.value as string;
 
     onUpdateBook({
       ...book,
